@@ -13,8 +13,8 @@ steps:
   env:
     - 'CLOUDSDK_COMPUTE_ZONE=${_REGION}'
     - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLUSTERNAME}'
-  substitutions:
-    _REGION: us-central1-c
-    _CLUSTERNAME: cluster-1
-    
+substitutions:
+  _REGION: us-central1-c
+  _CLUSTERNAME: cluster-1
+
   #comment
