@@ -1,15 +1,36 @@
-apiVersion: v1
-kind: Service
+---
+apiVersion: "v1"
+kind: "Service"
 metadata:
-  name: sarvesh-test-app-frontend
+  name: "sarvesh-test-app-deployment-service"
+  namespace: "default"
   labels:
-    app: sarvesh-test-app
-    tier: frontend
+    app: "sarvesh-test-app-deployment"
+    owner: "sarveshwaran"
 spec:
-  type: LoadBalancer
   ports:
-  - port: 80
-    targetPort: http-server
+  - protocol: "TCP"
+    port: 80
   selector:
-    app: sarvesh-test-app
-    tier: frontend
+    app: "sarvesh-test-app-deployment"
+    owner: "sarveshwaran"
+    tier: "frontend"
+  type: "LoadBalancer"
+  loadBalancerIP: ""
+
+
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: sarvesh-test-app-frontend
+#   labels:
+#     app: sarvesh-test-app
+#     tier: frontend
+# spec:
+#   type: LoadBalancer
+#   ports:
+#   - port: 80
+#     targetPort: http-server
+#   selector:
+#     app: sarvesh-test-app
+#     tier: frontend
