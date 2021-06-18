@@ -1,20 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp-deployment
+  name: sarvesh-test-app-deployment
   labels:
-    app: myapp
+    app: sarvesh-test-app
     region: us-central1-c
     owner: sarveshwaran 
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: myapp
+      app: sarvesh-test-app
+      tier: frontend
   template:
     metadata:
       labels:
-        app: myapp
+        app: sarvesh-test-app
+        tier: frontend
     spec:
       containers:
       - name: nginx
