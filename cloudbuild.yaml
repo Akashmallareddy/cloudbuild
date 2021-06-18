@@ -6,11 +6,11 @@ steps:
 - name: "gcr.io/cloud-builders/docker"
   args: ["push", "gcr.io/searce-playground/sarveshtest-demo:latest"]
   # deploy container image to GKE
-- name: "gcr.io/cloud-builders/gke-deploy"
-  args:
-  - run
-  - --filename=./k8s/deployment.yaml
-  - --image=gcr.io/searce-playground/sarveshtest-demo:latest
-  - --location=us-central1-c
-  - --cluster=cluster-1
+  
+- name: 'gcr.io/cloud-builders/kubectl'
+  id: Deploy
+  args: ['apply' , '-f' , 'k8s']
+  env:
+    - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
+    - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'
   #comment

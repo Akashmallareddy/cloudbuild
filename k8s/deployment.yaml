@@ -20,6 +20,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: gcr.io/searce-playground/sarveshtest-demo
+        image: gcr.io/searce-playground/sarveshtest-demo:latest
         ports:
         - containerPort: 80
