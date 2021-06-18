@@ -1,15 +1,15 @@
 steps:
   # build the container image
 - name: "gcr.io/cloud-builders/docker"
-  args: ["build", "-t", "gcr.io/searce-playground/sarveshtest-Demo:latest", "."]
+  args: ["build", "-t", "gcr.io/searce-playground/sarveshtest-demo:latest", "."]
   # push container image
 - name: "gcr.io/cloud-builders/docker"
-  args: ["push", "gcr.io/searce-playground/sarveshtest-Demo:latest"]
+  args: ["push", "gcr.io/searce-playground/sarveshtest-demo:latest"]
   # deploy container image to GKE
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
   - --filename=./k8s/deployment.yaml
-  - --image=gcr.io/searce-playground/sarveshtest-Demo:latest
+  - --image=gcr.io/searce-playground/sarveshtest-demo:latest
   - --location=us-central1-c
   - --cluster=cluster-1
