@@ -1,21 +1,13 @@
 steps:
-  # build the container image
-- name: "gcr.io/cloud-builders/docker"
-  args: ["build", "-t", "gcr.io/searce-playground/sarveshtest-demo:latest", "."]
-  # push container image
-- name: "gcr.io/cloud-builders/docker"
-  args: ["push", "gcr.io/searce-playground/sarveshtest-demo:latest"]
-  # deploy container image to GKE
-  
-- name: 'gcr.io/cloud-builders/kubectl'
-  id: Deploy
-  args: ['apply' , '-f' , 'k8s']
-  env:
-    - 'CLOUDSDK_COMPUTE_ZONE=${_REGION}'
-    - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLUSTERNAME}'
-substitutions:
-  _REGION: us-central1-c
-  _CLUSTERNAME: cluster-1
-
-  #comment 1
-  #
+# Build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/searce-playground/akashmtest-demo:latest', '.']
+# Push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/searce-playground/akashmtest-demo:latest']
+# Deploy container image to Cloud Run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: ['run', 'deploy', 'SERVICE-NAME', '--image', 'gcr.io/PROJECT_ID/IMAGE', '--region', 'REGION', '--platform', 'managed']
+images:
+- gcr.io/PROJECT_ID/IMAGE
