@@ -18,5 +18,3 @@ steps:
    - 'us-central1'
    - '--platform'
    - 'managed'
- images:
- - 'gcr.io/$PROJECT_ID/akashcbcr:$COMMIT_SHA'
