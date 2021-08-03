@@ -8,4 +8,6 @@ steps:
 # Deploy container image to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
-  args: ['run', 'deploy', 'SERVICE-NAME', '--image', 'gcr.io/PROJECT_ID/IMAGE', '--region', 'REGION', '--platform', 'managed']
+  args: ['run', 'deploy', 'akash-cbcr', '--image', 'gcr.io/searce-playground/akashmtest-demo:latest', '--region', 'us-central1-c', '--platform', 'managed']
+images:
+- gcr.io/searce-playground/akashmtest-demo:latest
