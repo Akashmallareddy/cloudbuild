@@ -1,13 +1,22 @@
 steps:
-# Build the container image
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/searce-playground/akashmtest-demo:latest', '.']
-# Push the container image to Container Registry
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/searce-playground/akashmtest-demo:latest']
-# Deploy container image to Cloud Run
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  entrypoint: gcloud
-  args: ['run', 'deploy', 'akash-cbcr', '--image', 'gcr.io/searce-playground/akashmtest-demo:latest', '--region', 'us-central1-c', '--platform', 'managed']
-images:
-- gcr.io/searce-playground/akashmtest-demo:latest
+ # Build the container image
+ - name: 'gcr.io/cloud-builders/docker'
+   args: ['build', '-t', 'gcr.io/searce-playground/akashcbcr:$COMMIT_SHA', '.']
+ # Push the container image to Container Registry
+ - name: 'gcr.io/cloud-builders/docker'
+   args: ['push', 'gcr.io/searce-playground/akashcbcr:$COMMIT_SHA']
+ # Deploy container image to Cloud Run
+ - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+   entrypoint: gcloud
+   args:
+   - 'run'
+   - 'deploy'
+   - 'akashcbcr'
+   - '--image'
+   - 'gcr.io/searce-playground/akashcbcr:$COMMIT_SHA'
+   - '--region'
+   - 'us-central1-c'
+   - '--platform'
+   - 'managed'
+ images:
+ - 'gcr.io/searce-playground/akashcbcr:$COMMIT_SHA'
